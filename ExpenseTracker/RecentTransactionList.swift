@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecentTransactionList: View {
     @EnvironmentObject var transactionListVM: TransactionListViewModel
+    
     var body: some View {
         VStack{
             HStack{
@@ -20,8 +21,7 @@ struct RecentTransactionList: View {
                 
                 // MARK: Header Link
                 NavigationLink{
-//                    TransactionList()
-                    
+                    TransactionList()
                 }label: {
                     HStack{
                         Text("See All")
@@ -34,12 +34,13 @@ struct RecentTransactionList: View {
             .padding(.top)
                 
                 // MARK: Recent Transaction List
-//                ForEach(Array(transactionListVM.transactions.prefix(5).enumerated()), id: \.element) { index, transaction in
-//                    TransactionRow(transaction: transaction)
-//                    Divider()
-//                        .opacity(index == 4 ? 0 : 1)
-//                }
-                
+                ForEach(Array(transactionListVM.transactions.prefix(5).enumerated()), id: \.element) { index, transaction in
+                    TransactionRow(transaction: transaction)
+                    Divider()
+                        .opacity(index == 4 ? 0 : 1)
+                }
+     
+            
                 
             }
             .padding()
@@ -55,12 +56,13 @@ struct RecentTransactionList_Previews: PreviewProvider {
         transactionListVM.transactions = transactionListPreviewData
         return transactionListVM
     }()
+    
     static var previews: some View {
         Group {
-            NavigationView { // add this to navigate to different screen
+            NavigationView {
                 RecentTransactionList()
-                RecentTransactionList()
-                    .preferredColorScheme(.dark)
+//                RecentTransactionList()
+//                    .preferredColorScheme(.dark)
             }
             
         }
